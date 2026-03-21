@@ -1,0 +1,23 @@
+[build]
+  command = "npx @11ty/eleventy"
+  publish = "_site"
+
+[[redirects]]
+  from = "/crisis"
+  to = "/crisis/"
+  status = 301
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

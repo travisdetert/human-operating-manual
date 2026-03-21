@@ -1,0 +1,13 @@
+{
+  "title": "My Contract",
+  "description": "A Human Operating System for People Who Are Done With Bullshit",
+  "tagline": "A personal operations framework that treats your life like a system that can be diagnosed, engineered, and maintained.",
+  "url": "https://mycontract.co",
+  "author": "My Contract",
+  "crisis": {
+    "suicide_hotline": "988",
+    "crisis_text": "741741",
+    "suicide_hotline_label": "Suicide & Crisis Lifeline",
+    "crisis_text_label": "Crisis Text Line"
+  }
+}

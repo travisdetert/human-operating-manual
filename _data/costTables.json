@@ -1,0 +1,42 @@
+{
+  "habits": [
+    { "name": "Morning coffee (Starbucks)", "dailyCost": 6.50 },
+    { "name": "Lunch out", "dailyCost": 15.00 },
+    { "name": "Cigarettes (1 pack)", "dailyCost": 9.00 },
+    { "name": "Vaping", "dailyCost": 5.00 },
+    { "name": "Energy drinks (2/day)", "dailyCost": 7.00 },
+    { "name": "DoorDash/UberEats", "dailyCost": 25.00 },
+    { "name": "Alcohol (2 drinks)", "dailyCost": 12.00 },
+    { "name": "Impulse Amazon purchase", "dailyCost": 8.00 },
+    { "name": "Convenience store snacks", "dailyCost": 5.00 },
+    { "name": "Lottery tickets", "dailyCost": 5.00 },
+    { "name": "Rideshare instead of transit", "dailyCost": 15.00 },
+    { "name": "Bottled water (vs. filter)", "dailyCost": 3.00 }
+  ],
+  "investmentRates": {
+    "conservative": 0.05,
+    "moderate": 0.07,
+    "aggressive": 0.10,
+    "sp500Historical": 0.10
+  },
+  "lifeExpectancy": {
+    "averageMale": 76.4,
+    "averageFemale": 81.2,
+    "averageAll": 77,
+    "adjustments": {
+      "smoker": -10,
+      "heavyDrinker": -7.5,
+      "obese": -6.5,
+      "sedentary": -4,
+      "familyHistoryEarlyDeath": -4,
+      "regularExercise": 4,
+      "healthyWeight": 2.5
+    }
+  },
+  "debtPayoff": {
+    "sampleBalance": 5000,
+    "typicalAPR": 24,
+    "minimumPaymentPercent": 2,
+    "minimumPaymentFloor": 25
+  }
+}

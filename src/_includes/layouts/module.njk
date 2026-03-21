@@ -1,0 +1,74 @@
+---
+layout: base.njk
+layoutClass: module
+---
+
+<div class="module-layout">
+  <aside class="sidebar" aria-label="Module navigation">
+    <nav class="sidebar-nav">
+      <p class="sidebar-heading">{% if "deep-dive" in tags %}Deep Dives{% else %}Methodology{% endif %}</p>
+      <ol class="sidebar-list">
+        {%- if "deep-dive" in tags %}
+          {%- for item in collections.deepDives %}
+          <li>
+            <a href="{{ item.url }}"{% if item.url == page.url %} aria-current="page" class="active"{% endif %}>{{ item.data.shortTitle or item.data.title }}</a>
+          </li>
+          {%- endfor %}
+        {%- else %}
+          {%- for item in collections.methodology %}
+          <li>
+            <a href="{{ item.url }}"{% if item.url == page.url %} aria-current="page" class="active"{% endif %}>{{ item.data.shortTitle or item.data.title }}</a>
+          </li>
+          {%- endfor %}
+        {%- endif %}
+      </ol>
+    </nav>
+
+    <nav class="toc" aria-label="On this page">
+      <p class="sidebar-heading">On this page</p>
+      <ul class="toc-list" id="toc-list">
+        <!-- Populated by JS from h2 elements -->
+      </ul>
+    </nav>
+  </aside>
+
+  <article class="module-content">
+    <header class="module-header">
+      {%- if moduleNumber is defined and moduleNumber !== null %}
+      <p class="module-number">Module {{ moduleNumber | string | padStart(2, "0") }}</p>
+      {%- endif %}
+    </header>
+
+    <div class="prose">
+      {{ content | safe }}
+    </div>
+
+    <nav class="prev-next" aria-label="Previous and next modules">
+      {%- if "deep-dive" in tags %}
+        {%- set prevItem = collections.deepDives | getPrevItem(page.url) %}
+        {%- set nextItem = collections.deepDives | getNextItem(page.url) %}
+      {%- else %}
+        {%- set prevItem = collections.methodology | getPrevItem(page.url) %}
+        {%- set nextItem = collections.methodology | getNextItem(page.url) %}
+      {%- endif %}
+
+      <div class="prev-next-inner">
+        {%- if prevItem %}
+        <a href="{{ prevItem.url }}" class="prev-link">
+          <span class="prev-next-label">&larr; Previous</span>
+          <span class="prev-next-title">{{ prevItem.data.shortTitle or prevItem.data.title }}</span>
+        </a>
+        {%- else %}
+        <span></span>
+        {%- endif %}
+
+        {%- if nextItem %}
+        <a href="{{ nextItem.url }}" class="next-link">
+          <span class="prev-next-label">Next &rarr;</span>
+          <span class="prev-next-title">{{ nextItem.data.shortTitle or nextItem.data.title }}</span>
+        </a>
+        {%- endif %}
+      </div>
+    </nav>
+  </article>
+</div>

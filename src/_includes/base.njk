@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}{% if title !== site.title %} | {{ site.title }}{% endif %}</title>
+  <meta name="description" content="{{ description or site.description }}">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ description or site.description }}">
+  <meta property="og:type" content="{% if layout == 'layouts/module.njk' %}article{% else %}website{% endif %}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:site_name" content="{{ site.title }}">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- Dark mode: respect system preference before page renders -->
+  <script>
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  </script>
+</head>
+<body class="layout-{{ layoutClass or 'default' }}">
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="site-logo" aria-label="{{ site.title }} - Home">
+        <span class="logo-mark">&gt;_</span>
+        <span class="logo-text">my contract</span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <nav id="main-nav" class="main-nav" aria-label="Main navigation">
+        <ul class="nav-list">
+          {%- for item in navigation.main %}
+          <li>
+            <a href="{{ item.url }}"{% if item.class %} class="{{ item.class }}"{% endif %}{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
+          </li>
+          {%- endfor %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="crisis-resources">
+        <p class="crisis-label">If you are in crisis:</p>
+        <p class="crisis-contacts">
+          <a href="tel:988" class="crisis-link">
+            <strong>{{ site.crisis.suicide_hotline }}</strong>
+            <span>{{ site.crisis.suicide_hotline_label }}</span>
+          </a>
+          <span class="crisis-separator" aria-hidden="true">|</span>
+          <a href="sms:741741" class="crisis-link">
+            <strong>Text {{ site.crisis.crisis_text }}</strong>
+            <span>{{ site.crisis.crisis_text_label }}</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-meta">
+        <p>&copy; {{ "" | date("Y") }} {{ site.title }}. All methodology content is free.</p>
+        <p class="footer-tagline">{{ site.tagline }}</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js" type="module"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

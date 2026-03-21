@@ -1,0 +1,46 @@
+---
+layout: base.njk
+layoutClass: tool
+---
+
+<div class="tool-layout">
+  <aside class="sidebar" aria-label="Tools navigation">
+    <nav class="sidebar-nav">
+      <p class="sidebar-heading">Tools</p>
+      <ul class="sidebar-list">
+        {%- for item in navigation.tools %}
+        <li>
+          <a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page" class="active"{% endif %}>
+            {{ item.label }}
+            {%- if not item.free %}<span class="badge-premium">Premium</span>{%- endif %}
+          </a>
+        </li>
+        {%- endfor %}
+      </ul>
+    </nav>
+  </aside>
+
+  <article class="tool-content">
+    <header class="tool-header">
+      <h1>{{ title }}</h1>
+      {%- if description %}
+      <p class="tool-description">{{ description }}</p>
+      {%- endif %}
+    </header>
+
+    <div class="tool-body">
+      {{ content | safe }}
+    </div>
+  </article>
+</div>
+
+{% block scripts %}
+{%- if utilScript %}
+<script src="{{ utilScript }}" defer></script>
+{%- endif %}
+{%- if scriptPath %}
+<script src="{{ scriptPath }}" defer></script>
+{%- elif script %}
+<script src="/js/calculators/{{ script }}" defer></script>
+{%- endif %}
+{% endblock %}
